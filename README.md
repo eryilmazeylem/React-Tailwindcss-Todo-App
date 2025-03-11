@@ -12,10 +12,14 @@
 
 ## 📦 Kurulum ve Çalıştırma
 ### 1️⃣ Projeyi Klonlayın
+![clone](images/clone.png)
 ### 2️⃣ Bağımlılıkları Yükleyin
+![Bağımlılıklar](images/npmi.png)
 ### 3️⃣ Projeyi Çalıştırın
+![calistirma](images/npmrundev.png)
 
 ## 📁 Proje Yapısı
+![projeyapisi](images/projeyapisi.png)
 <p>Bileşenler:</p>
 <ul>
   <li>Todo.jsx → Ana Todo bileşeni (görev ekleme, listeleme, durumu değiştirme)</li>
