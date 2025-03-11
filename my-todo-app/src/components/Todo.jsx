@@ -6,7 +6,11 @@ import Todoitem from './Todoitem';
 
 const Todo = () => {
     const data =useRef();
-    const [todos , setTodos]=useState([]);
+    const [todos , setTodos]=useState(
+        localStorage.getItem("todos")
+         ? JSON.parse(localStorage.getItem("todos")) 
+         : []
+        );
 
     const addTodos=()=>{
         const inputText =data.current.value.trim();
@@ -26,8 +30,25 @@ const Todo = () => {
      data.current.value="";
     }
 
+   const toggle = (id) => {
+    setTodos((prevTodos) => {
+       return prevTodos.map((todo) => {
+            if(todo.id==id){
+                return {... todo, isComplete: !todo.isComplete}
+            }
+            return todo;
+        }) 
+    })
+   }
+
+   const deleteTodo = (id) =>{
+    setTodos((prevTodos) =>{
+      return  prevTodos.filter((todo) => todo.id!=id)
+    });
+   };
+
     useEffect(() => {
-        console.log(todos);
+       localStorage.setItem("todos",JSON.stringify(todos))
      },[todos]);
 
   return (
@@ -51,7 +72,7 @@ const Todo = () => {
         {/* Listelenen Görevler */}
         <div className='mt-5'>
            {todos.map((todo) => (
-                <Todoitem todo={todo}></Todoitem>
+                <Todoitem key={todo.id} todo={todo} toggle={toggle} deleteTodo={deleteTodo} ></Todoitem>
             ))}
             
         </div>
